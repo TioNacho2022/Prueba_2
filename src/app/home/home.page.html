@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar  class="ion-text-center">
+    <ion-title>
+      Catalogo
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text='perfil' defaultHref="perfil"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col >
+        <ion-button expand="block" color="danger" (click)="this.api.productsMenos()">anterior</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="block" (click)="this.api.productsMas()">siguiente</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let p of this.api.obtenerDatosProducts()?.products">
+      <ion-col >
+        <ion-item detail="true">
+          <ion-avatar slot="start">
+            <img [src]="p.thumbnail" alt="">
+          </ion-avatar>
+          <ion-label>
+            <h3>{{p.title}}</h3>
+            <ion-button fill="clear">$ {{p.price}}</ion-button><br>
+            <ion-button fill="clear" color="success" >{{p.discountPercentage}}</ion-button>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
